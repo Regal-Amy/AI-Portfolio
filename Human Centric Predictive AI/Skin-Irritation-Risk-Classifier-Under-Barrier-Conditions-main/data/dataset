@@ -1,0 +1,15 @@
+## 🧾 Dataset
+
+- **Source**: [SkinSort 19,000+ Ingredients Dataset]([https://skinsort.com/ingredients](https://www.kaggle.com/datasets/kazireyazulhasan/19000-skincare-products-database-of-skinsort)
+- **Source**: [Sephora Skincare Ingredient](https://www.kaggle.com/datasets/dominoweir/skincare-product-ingredients)
+- **Format**: CSV file containing INCI names and ingredient metadata.
+- **Columns used/generated**:
+  - `INCI Name`
+  - `Function Type` (e.g., emollient, preservative)
+  - `Chemical Type` (e.g., alcohol, ester)
+  - `Predicted_Occlusivity`
+  - `Predicted_Comedogenicity`
+  - `Predicted_IrritationRisk`
+  - `Irritation_Under_Barrier` *(Target variable)*
+
+I used custom rule-based logic (Python functions) to estimate the above predictive features based on chemical and functional type.
