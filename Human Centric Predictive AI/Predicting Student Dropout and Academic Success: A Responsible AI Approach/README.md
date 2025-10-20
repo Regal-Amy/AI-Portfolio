@@ -1,58 +1,72 @@
 # 🎓 Predicting Student Dropout and Academic Success: A Responsible AI Approach
 
-This project develops a **machine learning system** to predict student dropout and academic success, while ensuring **transparency, explainability, and fairness** in its predictions.
-
-Using a real educational dataset (`Predict_Student_Dropout_and_Academic_Success.csv`), the model integrates:
-- **XGBoost** for predictive performance
-- **SHAP** and **LIME** for explainable AI
-- **Fairlearn** for fairness auditing across sensitive groups (gender, age, nationality, etc.)
+This project applies **machine learning, explainable AI, and fairness auditing** to predict student dropout and academic success using the *Predict Student Dropout and Academic Success* dataset.  
+It demonstrates how AI systems can be designed to be both **accurate and responsible**, aligning with human-centered and ethical AI principles.
 
 ---
 
-## 🧭 Project Motivation
+## 🧭 Overview
 
-Student attrition is a major challenge for universities worldwide. Predictive models can help identify at-risk students early — but if built carelessly, they can reinforce **existing inequalities**.  
-This project aims to:
-1. Predict **student outcomes** (Graduate, Dropout, Enrolled).  
-2. Provide **transparent explanations** of each prediction.  
-3. Audit and mitigate **algorithmic bias** across demographic groups.
+The goal is to identify students at risk of dropping out based on pre-enrollment data while ensuring that model predictions are **transparent and fair** across demographic groups.
 
-This aligns with **Human-Centered and Responsible AI** principles by ensuring that the system is not only accurate, but also **fair and interpretable**.
-
----
-
-## 📁 Dataset Overview
-
-**Source:** [Predict Student Dropout and Academic Success Dataset (UCI Repository)](https://www.kaggle.com/datasets/syedfaizanalii/predict-students-dropout-and-academic-success)
-
-**Shape:** 4,424 students × 37 features  
-**Target classes:**  
-- `Graduate` (0)  
-- `Dropout` (1)  
-- `Enrolled` (2)
-
-**Feature types:**
-- **Demographic:** Gender, Age, Nationality, Marital Status  
-- **Academic:** Admission grade, Previous qualification  
-- **Financial:** Scholarship holder, Tuition fee status, Debtor status  
-- **Parental background:** Qualification and occupation  
-- **Macroeconomic:** Unemployment rate, GDP, Inflation (removed to avoid leakage)
+### Key Objectives
+- Build a predictive model for student outcomes (Graduate, Dropout, Enrolled).  
+- Use **SHAP** and **LIME** to explain how features influence predictions.  
+- Conduct a **Fairlearn audit** to assess potential bias across gender, age, nationality, and other sensitive attributes.
 
 ---
 
-## 🧹 Data Preparation
+## ⚙️ Methods
 
-### 1️⃣ Data Cleaning
-- Loaded dataset with `;` delimiter  
-- Verified datatypes with `df.info()`  
-- Converted coded categorical columns to `category` dtype  
+- **Model:** XGBoost Classifier  
+- **Explainability:** SHAP (global feature importance) and LIME (individual prediction insight)  
+- **Fairness Framework:** Fairlearn MetricFrame for disparity analysis  
+- **Sensitive Attributes:** Gender, Age, Nationality, International status, Displacement, and Educational special needs  
 
-### 2️⃣ Feature Selection
-Removed **leaky** and **irrelevant** variables:
-- Semester performance metrics (`Curricular units ...`) — these leak post-enrollment data.
-- Macroeconomic indicators (`GDP`, `Inflation`, `Unemployment rate`) — reflect yearly trends, not individual traits.
+---
 
-### 3️⃣ Target Encoding
-```python
-target_mapping = {"Graduate": 0, "Dropout": 1, "Enrolled": 2}
-df['Target'] = df['Target'].map(target_mapping)
+## 📊 Results Summary
+
+| Aspect | Key Findings |
+|--------|---------------|
+| **Model Accuracy** | ~60% overall |
+| **Top Predictors** | Tuition fees up to date, Scholarship holder, Admission grade, Parental qualification |
+| **Insight** | Financial and academic factors dominate predictions; may reflect structural inequities |
+| **Bias Findings** | Disparities observed across age, gender, and international status |
+| **Interpretability** | SHAP and LIME clarify why specific predictions are made, supporting human understanding and accountability |
+
+---
+
+## ⚖️ Responsible AI Insights
+
+Even after removing explicit sensitive features, the model exhibits **proxy bias**, where neutral-looking variables (e.g., parental occupation, financial status) indirectly encode disadvantage.  
+This highlights the importance of **auditing, transparency, and iterative model refinement** before deploying predictive systems in education.
+
+---
+
+## 🧩 Future Work
+
+- Apply bias mitigation strategies (reweighting, fairness constraints).  
+- Explore causal reasoning to distinguish correlation from discrimination.  
+- Develop interactive dashboards for explainability and fairness tracking.
+
+---
+
+## 🛠️ Tools & Libraries
+
+`Python · Pandas · Scikit-learn · XGBoost · SHAP · LIME · Fairlearn · Matplotlib · Seaborn`
+
+---
+
+## 👩🏽‍💻 Author
+
+**Amirat Abdulsalam**  
+*MPhil in Human-Inspired AI, University of Cambridge*  
+Focus: Responsible AI · Human-Centered Machine Learning · Algorithmic Fairness
+
+---
+
+## 📜 License
+
+Released under the [MIT License](LICENSE).
+
